@@ -41,6 +41,8 @@ public class RunMotorIfDetectorSays extends CommandBase {
   public void execute() {
     if (local_detector_sub.something_is_near()) {
         local_motor_sub.set_target_speed(Outputs.MOTOR_SPEED);
+    } else {
+      local_motor_sub.set_target_speed(0.0);
     }
   }
 

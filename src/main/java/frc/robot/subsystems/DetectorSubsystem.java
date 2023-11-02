@@ -15,7 +15,10 @@ public class DetectorSubsystem extends SubsystemBase {
   /** Creates a new DetectorSubsystem. */
   public DetectorSubsystem(int digitalIO_port) {
     sensor = new DigitalInput(digitalIO_port);
-    sensorValue = sensor.get();
+    // The sensor is inverted!  It returns True if nothing is detected,
+    // and returns False if something is detected.  So we negate the
+    // value returned by get(), by using "!" (logical NOT).
+    sensorValue = !sensor.get();
     SmartDashboard.putBoolean("Sensor value", sensorValue);
   }
 
@@ -25,7 +28,10 @@ public class DetectorSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    sensorValue = sensor.get();
+    // The sensor is inverted!  It returns True if nothing is detected,
+    // and returns False if something is detected.  So we negate the
+    // value returned by get(), by using "!" (logical NOT).
+    sensorValue = !sensor.get();
     SmartDashboard.putBoolean("Sensor value", sensorValue);
   }
 }
